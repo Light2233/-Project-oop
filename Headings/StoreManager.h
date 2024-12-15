@@ -1,17 +1,21 @@
 #ifndef STOREMANAGER_H
 #define STOREMANAGER_H
 
+#include "Product.h"
+#include <vector>
 #include <iostream>
 #include <string>
-#include <vector>
-#include "Product.h" 
+#include <fstream>
 
 class StoreManager {
-public:
-    virtual void viewProducts() const;
-
 protected:
-    std::vector<Product> products;
+    std::vector<Product> products; 
+public:
+    void viewProductList() const;
+    void addProduct(Product& product);
+    Product* getProductById(std::string& productId);
 };
 
-#endif 
+#endif
+
+

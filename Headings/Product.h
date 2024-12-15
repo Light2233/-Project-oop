@@ -2,31 +2,33 @@
 #define PRODUCT_H
 
 #include <string>
+#include <vector>
+#include <algorithm>
+#include "IObserver.h"
 #include <iostream>
 
 class Product {
-public:
-    Product();
-    Product(std::string id, std::string name, float price, std::string description);
-    void print() const;
-
-    std::string getId() const;
-    std::string getName() const;
-    std::string getDescription() const;
-    std::string getCategory() const;
-    float getPrice() const;
-
+private:
     std::string id;
     std::string name;
     float price;
+    float discount;
     std::string description;
-    std::string category;
-
-    void setId(const std::string& id);
-    void setName(const std::string& name);
-    void setCategory(const std::string& category);
-    void setPrice(float price);
-    void setDescription(const std::string& description);
+    std::vector<IObserver*> observers;
+public:
+    Product(const std::string& id, const std::string& name, float price, const std::string& description, float discount);
+    void addObserver(IObserver* observer);
+    void removeObserver(IObserver* observer);
+    void notifyObservers();
+    void setPrice(float newPrice);
+    void setDiscount(float newDiscount); 
+    void setDescription(std::string& newDescription);
+    
+    const std::string& getId() const;
+    const std::string& getName() const;
+    float getPrice() const;
+    const std::string& getDescription() const;
+    void print() const;
 };
 
 #endif

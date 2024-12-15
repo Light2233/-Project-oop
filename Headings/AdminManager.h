@@ -3,20 +3,20 @@
 
 #include "StoreManager.h"
 #include "Product.h"
-#include <iostream>
 #include <vector>
-#include <string>   
+#include <fstream>
+#include <iostream>
 
 class AdminManager : public StoreManager {
 private:
-    std::string password = "bamcing";
+    std::string password = "admin"; 
+
 public:
     AdminManager(std::string& adminPassword);
-    Product getProduct(std::string& productId);
     void addProduct(Product& product);
     void removeProduct(std::string& productId);
     void updateProductPrice(Product& product, float newPrice);
-    void addPromotion(Product& product, float discount);
+    void setProductPromotion(Product& product, float discount);
 };
 
-#endif 
+#endif

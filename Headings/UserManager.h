@@ -2,18 +2,23 @@
 #define USERMANAGER_H
 
 #include "StoreManager.h"
-#include "Product.h"
-#include <iostream>
+#include "IObserver.h"
 #include <vector>
-#include <string>
+#include <iostream>
 
-class UserManager : public StoreManager {
-public:
-    void addToCart(Product& product);
-    void viewCart() const;
-
+class UserManager : public StoreManager, public IObserver {
 private:
     std::vector<Product> cart;
+
+public:
+    void addToCart(Product& product);
+
+    void removeFromCart(std::string& productId);
+
+    void update(Product& product);
+
+    void viewCart() const;
+    
 };
 
 #endif 
