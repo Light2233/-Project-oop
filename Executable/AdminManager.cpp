@@ -21,11 +21,14 @@ void AdminManager::addProduct(Product& product) {
 void AdminManager::removeProduct(string& productId) {
     for (auto it = products.begin(); it != products.end(); ) {
         if (it->getId() == productId) {
-            it = products.erase(it); 
+            it = products.erase(it);
+            cout << "Товар успешно удален" << endl;
+            return;
         } else {
             ++it; 
         }
     }
+    cout << "Товара с данным ID не существует" << endl;
 }
 
 void AdminManager::updateProductPrice(Product& product, float newPrice) {
